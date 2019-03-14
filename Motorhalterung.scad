@@ -22,10 +22,16 @@ module motorplatte()
 {
     difference()
     {
+        //Platte
         cube([motord,motord,wand]);
+        //Loch für Motorwelle
         translate([motord/2,motord/2,0]) cylinder(d=13,h=wand);
+        //Befestigungslöcher
         translate([motord/2-12.5,motord/2,0]) cylinder(d=3,h=wand);
         translate([motord/2+12.5,motord/2,0]) cylinder(d=3,h=wand);
+        //Aussparungen für Befestigung der Bodenplatte/des Halters
+        translate([motord/2-12.5,motord,0]) cylinder(d=10,h=wand);
+        translate([motord/2+12.5,motord,0]) cylinder(d=10,h=wand);
     }
 }
 
@@ -56,10 +62,10 @@ module halterplatte()
     difference()
     {
         cube([x, y, wand]);
-        translate([x/2-12.5,10,0]) cylinder(d=3.5,h=wand);
-        translate([x/2-12.5,35,0]) cylinder(d=3.5,h=wand);
-        translate([x/2+12.5,10,0]) cylinder(d=3.5,h=wand);
-        translate([x/2+12.5,35,0]) cylinder(d=3.5,h=wand);
+        translate([x/2-12.5,10,0]) cylinder(d=4,h=wand);
+        translate([x/2-12.5,35,0]) cylinder(d=4,h=wand);
+        translate([x/2+12.5,10,0]) cylinder(d=4,h=wand);
+        translate([x/2+12.5,35,0]) cylinder(d=4,h=wand);
     }
 }
 
