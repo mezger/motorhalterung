@@ -5,16 +5,16 @@ seite=10;
 luecke=2;
 
 
-translate([wand,0,motord+wand+luecke]) rotate([-90,0,0]) 
+//translate([wand,0,motord+wand+luecke]) rotate([-90,0,0]) 
     motorteil();
-halter();
+//halter();
 
 
 module motorteil()
 {
     translate([wand,0,0]) motorplatte();
     motorplatteseitenteil();
-    translate([wand+motord,0,0]) motorplatteseitenteil();
+    translate([2*wand+motord,motord,0]) rotate([0,0,180]) motorplatteseitenteil();
 }
 
 
@@ -41,8 +41,14 @@ module motorplatteseitenteil()
     difference()
     {
         cube([wand,motord,seite]);
+        //Loch vorne
         translate([0,5,(seite-wand)/2+wand]) rotate([0,90,0]) cylinder(d=3,h=wand);
+        //Aussschnitt für M3 Mutter vorne
+        translate([wand/2,5,(seite-wand)/2+wand]) rotate([0,90,0]) m3mutter();
+        //Loch hinten
         translate([0,motord-5,(seite-wand)/2+wand]) rotate([0,90,0]) cylinder(d=3,h=wand);
+        //Aussschnitt für M3 Mutter hinten
+        translate([wand/2,motord-5,(seite-wand)/2+wand]) rotate([0,90,0]) m3mutter();
     }
 }
 
@@ -117,4 +123,9 @@ module sector(h, d, a1, a2)
             rotate([0,0,a2]) translate([-d/2, 0, -0.5]) cube([d, d/2, h+1]);
         }
     }
+}
+
+module m3mutter(m3mutterhoehe=2.4)
+{
+    cylinder(h=m3mutterhoehe,r=5.5/2/cos(180/6)+0.05,$fn=6);
 }
