@@ -5,9 +5,9 @@ seite=10;
 luecke=2;
 
 
-//translate([wand,0,motord+wand+luecke]) rotate([-90,0,0]) 
+translate([wand,0,motord+wand+luecke]) rotate([-90,0,0]) 
     motorteil();
-//halter();
+halter();
 
 
 module motorteil()
