@@ -3,12 +3,13 @@ wand=3;
 motord=40;
 seite=10;
 luecke=2;
+spalt=0.3;
 
 
-translate([wand,0,motord+wand+luecke]) rotate([-90,0,0]) 
-    motorteil();
+translate([wand+spalt,0,motord+wand+luecke]) 
+    rotate([-90,0,0]) 
+        motorteil();
 halter();
-
 
 module motorteil()
 {
@@ -57,13 +58,13 @@ module halter()
 {
     halterseitenteil();
     translate([wand,0,0]) halterplatte();
-    translate([motord+3*wand,0,0]) halterseitenteil();
+    mirror([1,0,0]) translate([-4*wand-motord-2*spalt,0,0]) halterseitenteil();
 }
 
 
 module halterplatte()
 {
-    x=motord+2*wand;
+    x=motord+2*wand+2*spalt;
     y=motord+wand+luecke;
     difference()
     {
@@ -80,15 +81,17 @@ module halterseitenteil()
     h=motord+wand+luecke;
     t=motord+wand+luecke;
     rotate([0,90,0])
-    difference()
-    {
-        hull()
+        difference()
         {
-            translate([-h,0,0]) cube([h,seite, wand]);
-            translate([-seite,0,0]) cube([seite, h, wand]);
+            hull()
+            {
+                translate([-h,0,0]) cube([h,seite, wand]);
+                translate([-seite,0,0]) cube([seite, h, wand]);
+            }
+            translate([-motord-wand-luecke+5,(seite-wand)/2+wand,0]) halterausschnitte();
         }
-        translate([-motord-wand-luecke+5,(seite-wand)/2+wand,0]) halterausschnitte();
-    }
+    //Verstärkungsfalz
+    translate([-wand,0,0]) cube([wand,wand,h]);
 }
 
 
