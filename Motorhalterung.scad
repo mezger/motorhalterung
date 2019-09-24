@@ -26,7 +26,7 @@ module motorplatte()
         //Platte
         cube([motord,motord,wand]);
         //Loch für Motorwelle
-        translate([motord/2,motord/2,0]) cylinder(d=13,h=wand);
+        translate([motord/2,motord/2,0]) cylinder(d=13.5,h=wand);
         //Befestigungslöcher
         translate([motord/2-12.5,motord/2,0]) cylinder(d=3,h=wand);
         translate([motord/2+12.5,motord/2,0]) cylinder(d=3,h=wand);
@@ -130,5 +130,5 @@ module sector(h, d, a1, a2)
 
 module m3mutter(m3mutterhoehe=2.4)
 {
-    cylinder(h=m3mutterhoehe,r=5.5/2/cos(180/6)+0.05,$fn=6);
+    cylinder(h=m3mutterhoehe,r=5.5/2/cos(180/6)+0.35,$fn=6);
 }
